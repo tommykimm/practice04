@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import {Body, Box, Button, Click} from './styles/styles';
+import {useState} from 'react';
+import { useSelector, useDispatch} from "react-redux";
+import { decrement, increment} from  './features/counterSlice';
+
 
 function App() {
+    const count = useSelector((state) => state.counter.value)
+    const dispatch = useDispatch()
+    const[color, setColor] = useState('lightgray')
+    const[option, setOption] = useState(true)
+    function Option(){
+        setOption(!option);
+        color==='lightgray' ? setColor('white'): setColor('lightgray');
+    }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Body color ={color}>
+        <Box>
+            <h1>The Count is: {count} </h1>
+            <Button>
+                <Click onClick={() => dispatch(increment())}> +1</Click>
+                <Click onClick={() => dispatch(decrement())}> -1</Click>
+                <Click onClick={() => {Option()}}>🙃</Click>
+            </Button>
+        </Box>
+    </Body>
   );
 }
 
 export default App;
+
