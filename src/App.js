@@ -17,7 +17,7 @@ function App() {
   return (
     <Body color ={color}>
         <Box>
-            <h1>The Count is: {count} </h1>
+            <h1>The Count is: yo! {count} </h1>
             <Button>
                 <Click onClick={() => dispatch(increment())}> +1</Click>
                 <Click onClick={() => dispatch(decrement())}> -1</Click>
